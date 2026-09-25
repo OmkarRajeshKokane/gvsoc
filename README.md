@@ -66,6 +66,24 @@ The following example can be launched on pulp-open:
 ./install/bin/gvsoc --target=pulp-open --binary examples/pulp-open/hello image flash run
 ~~~~~
 
+## DIMC and Spatz targets
+
+This fork tracks current GVSoC upstream and pins the matching DIMC changes in the
+`core` and `pulp` submodules. Clone it with submodules, then build either Spatz
+target:
+
+```sh
+git clone --recurse-submodules https://github.com/OmkarRajeshKokane/gvsoc.git
+cd gvsoc
+make all TARGETS=spatz_v2
+./install/bin/gvrun --target=spatz_v2 \
+  --param chip/soc/binary=./pulp/examples/spatz/test-riscvTests-vfadd run
+```
+
+Build `TARGETS=spatz_v3` to use the newer Spatz system model. The DIMC VMVM
+models are included in both targets. The separate Spatz RTL repository contains
+the hardware and ResNet VMVM test sources.
+
 ## Citing
 
 If you intend to use or reference GVSoC for an academic publication, please consider citing it:
